@@ -31,7 +31,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.mycompany.apps.mappers" />
+        <property name="basePackage" value="com.mycompany.apps.domain.mappers" />
     </bean>
 
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -40,8 +40,8 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.mycompany.apps.entities"/>
-        <property name="mapperLocations" value="classpath*:com/mycompamy/apps/mappers/**/*.xml" />
+        <property name="typeAliasesPackage" value="com.mycompany.apps.domain.entities"/>
+        <property name="mapperLocations" value="classpath*:com/mycompamy/apps/domain/mappers/**/*.xml" />
     </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

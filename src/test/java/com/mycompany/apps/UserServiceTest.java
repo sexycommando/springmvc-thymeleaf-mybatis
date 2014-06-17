@@ -1,7 +1,7 @@
 package com.mycompany.apps;
 
-import com.mycompany.apps.entities.Users;
-import com.mycompany.apps.mappers.UsersMapper;
+import com.mycompany.apps.domain.entities.Users;
+import com.mycompany.apps.domain.mappers.UsersMapper;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;

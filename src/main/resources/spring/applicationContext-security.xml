@@ -23,7 +23,9 @@
                     default-target-url="/"
                     always-use-default-target="false"
                     authentication-failure-url="/login-error.html" />
-        <logout />
+        <logout logout-success-url="/"
+                delete-cookies="JSESSIONID"
+                invalidate-session="true" />
         <!-- Security zones -->
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />

@@ -1,7 +1,8 @@
 package com.mycompany.apps;
 
+import com.mycompany.apps.entities.Users;
+import com.mycompany.apps.mappers.UsersMapper;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,22 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.mycompany.apps.entities.User;
-import com.mycompany.apps.services.UserService;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring/applicationContext.xml")
 public class UserServiceTest {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UsersMapper usersMapper;
 
-	@Test
-	public void testFindAllusers() {
-		List<User> users = userService.findAllUsers();
-		Assert.assertNotNull(users);
-		for (User user : users) {
-			System.err.println(user);
-		}
-	}
+    @Test
+    public void testFindAllusers() {
+        List<Users> users = usersMapper.findAllUsers();
+        Assert.assertNotNull(users);
+        for (Users user : users) {
+            System.err.println(user.getUsername());
+        }
+    }
 }

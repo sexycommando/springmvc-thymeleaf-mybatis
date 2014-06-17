@@ -14,15 +14,24 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "classpath:spring/applicationContext.xml")
 public class UserServiceTest {
 
-    @Autowired
-    private UsersMapper usersMapper;
+	@Autowired
+	private UsersMapper usersMapper;
 
-    @Test
-    public void testFindAllusers() {
-        List<Users> users = usersMapper.findAllUsers();
-        Assert.assertNotNull(users);
-        for (Users user : users) {
-            System.err.println(user.getUsername());
-        }
-    }
+	@Test
+	public void testFindAllusers() {
+		List<Users> users = usersMapper.findAllUsers();
+		Assert.assertNotNull(users);
+		for (Users user : users) {
+			System.err.println(user.getUsername());
+		}
+	}
+
+	@Test
+	public void testHasRoles() {
+		List<String> roles = usersMapper.hasRoles("bigadmin");
+		Assert.assertNotNull(roles);
+		for (String role : roles) {
+			System.err.println(role);
+		}
+	}
 }

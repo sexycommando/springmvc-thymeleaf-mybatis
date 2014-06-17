@@ -45,11 +45,6 @@
         where id = #{id,jdbcType=INTEGER}
         and username = #{username,jdbcType=VARCHAR}
     </select>
-    <select id="findAllUsers" parameterType="map" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from public.users
-    </select>
     <delete id="deleteByPrimaryKey" parameterType="map">
         <!--
           WARNING - @mbggenerated
@@ -255,4 +250,19 @@
         where id = #{id,jdbcType=INTEGER}
         and username = #{username,jdbcType=VARCHAR}
     </update>
+
+    <select id="findAllUsers" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from public.users
+    </select>
+    <select id="hasRoles" parameterType="String" resultType="String">
+        SELECT R.NAME as role
+        FROM ROLES R
+        JOIN ROLES_USERS RU on R.id = RU.role_id
+        JOIN USERS U on U.id = RU.user_id
+        JOIN ROLE_PERMISSIONS RP ON RP.roles_id = R.id
+        JOIN PERMISSIONS P ON P.id = RP.permissions_id
+        WHERE U.username = #{username,jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -37,6 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Users users = usersMapper.selectByUsername(username);
         List<String> roles = usersMapper.hasRoles(username);
         // Users (entity to dto) copy by dozer
+        // TODO
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

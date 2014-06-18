@@ -15,6 +15,10 @@
  */
 package com.mycompany.apps.domain.services;
 
+import com.mycompany.apps.domain.entities.Users;
+import com.mycompany.apps.domain.mappers.UsersMapper;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,8 +29,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
+    private UsersMapper usersMapper;
+
     @Override
-    public UserDetails loadUserByUsername(String string) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users users = usersMapper.selectByUsername(username);
+        List<String> roles = usersMapper.hasRoles(username);
+        // Users (entity to dto) copy by dozer
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

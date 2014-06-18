@@ -251,6 +251,12 @@
         and username = #{username,jdbcType=VARCHAR}
     </update>
 
+    <select id="selectByUsername" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from public.users
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
     <select id="findAllUsers" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />

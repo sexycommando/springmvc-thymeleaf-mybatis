@@ -9,6 +9,10 @@
 
     <!-- Authentication using a memory user list -->
     <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="userDetailsService">
+            <password-encoder hash="sha-256"/>
+        </authentication-provider>
+        <!--
         <authentication-provider>
             <user-service>
                 <user name="jim" password="demo" authorities="ROLE_ADMIN" />
@@ -16,6 +20,7 @@
                 <user name="ted" password="demo" authorities="ROLE_USER, ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
+        -->
     </authentication-manager>
     <http auto-config="true" use-expressions="true">
         <!-- Login pages -->
@@ -31,5 +36,7 @@
         <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/shared/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
     </http>
+
+    <beans:bean id="userDetailsService" class="com.mycompany.apps.domain.services.UserDetailsServiceImpl" />
 
 </beans:beans>

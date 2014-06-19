@@ -75,6 +75,11 @@
             <name>JBoss Repository</name>
             <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
         </repository>-->
+        <!--<repository>
+            <id>maven.seasar.org</id>
+            <name>The Seasar Foundation Maven2 Repository</name>
+            <url>http://maven.seasar.org/maven2</url>
+        </repository>-->
     </repositories>
 
 
@@ -426,6 +431,18 @@
             <version>${jstl.version}</version>
         </dependency>
         <!-- == End Servlet APIs == -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -453,6 +470,7 @@
         <jsp.version>2.2</jsp.version>
         <jstl.version>1.2</jstl.version>
         <taglibs-standard.version>1.1.2</taglibs-standard.version>
+        <dozer.version>5.4.0</dozer.version>
 
         <maven.compiler.plugin>3.1</maven.compiler.plugin>
         <maven.failsafe.plugin>2.4.3-alpha-1</maven.failsafe.plugin>

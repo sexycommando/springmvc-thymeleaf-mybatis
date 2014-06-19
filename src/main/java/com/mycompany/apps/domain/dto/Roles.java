@@ -19,7 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
- * @author root
+ * @author stnetadmin
  */
 public class Roles implements GrantedAuthority {
 

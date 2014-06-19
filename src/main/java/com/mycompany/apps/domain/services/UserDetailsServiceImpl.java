@@ -19,6 +19,7 @@ import com.mycompany.apps.domain.entities.Users;
 import com.mycompany.apps.domain.mappers.UsersMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,11 +36,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users users = usersMapper.selectByUsername(username);
+        if (users == null) {
+            throw new UnsupportedOperationException("User not found...");
+        }
         List<String> roles = usersMapper.hasRoles(username);
-        // Users (entity to dto) copy by dozer
-        // TODO
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Users (entity to dto) copy and Authority(ROLE) set
+        com.mycompany.apps.domain.dto.Users user = new com.mycompany.apps.domain.dto.Users();
+        BeanUtils.copyProperties(users, user);
+        user.setAuthorities(roles);
+        return user;
     }
 
 }

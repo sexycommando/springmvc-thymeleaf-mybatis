@@ -11,6 +11,7 @@
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsService">
             <password-encoder hash="sha-256"/>
+            <!-- <password-encoder ref="passwordEncoder"/> --> <!-- use BCrypt -->
         </authentication-provider>
         <!--
         <authentication-provider>
@@ -38,5 +39,6 @@
     </http>
 
     <beans:bean id="userDetailsService" class="com.mycompany.apps.domain.services.UserDetailsServiceImpl" />
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 </beans:beans>

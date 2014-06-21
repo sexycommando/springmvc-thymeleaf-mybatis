@@ -24,18 +24,24 @@
         -->
     </authentication-manager>
     <http auto-config="true" use-expressions="true">
+
         <!-- Login pages -->
         <form-login login-page="/login.html"
-                    default-target-url="/"
+                    login-processing-url="/authenticate"
                     always-use-default-target="false"
                     authentication-failure-url="/login-error.html" />
-        <logout logout-success-url="/"
+        <logout logout-url="/logout"
+                logout-success-url="/"
                 delete-cookies="JSESSIONID"
                 invalidate-session="true" />
+
         <!-- Security zones -->
+        <intercept-url pattern="/login.html" access="permitAll"/>
+        <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/shared/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+        <anonymous granted-authority="ROLE_ANONYMOUS"/>
     </http>
 
     <beans:bean id="userDetailsService" class="com.mycompany.apps.domain.services.UserDetailsServiceImpl" />

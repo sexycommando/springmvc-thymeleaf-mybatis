@@ -10,6 +10,23 @@
         <h1>Thymeleafexamples - Spring security</h1>
         <p>This is the <b>user</b> zone</p>
         <p>Only authenticated users with role <b>USER</b> are allowed to see this page.</p>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Id#</th>
+					<th>Name</th>
+					<th>Password</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.username}"></td>
+					<td th:text="${user.password}"></td>
+				</tr>
+			</tbody>
+		</table>
         <p><a href="../index.html" th:href="@{/index.html}">Back to home page</a></p>
     </body>
 </html>

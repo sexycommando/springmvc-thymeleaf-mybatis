@@ -1,10 +1,13 @@
 package com.mycompany.apps.web.controller;
 
+import java.security.Principal;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.mycompany.apps.domain.dto.Users;
 
 /**
  * Application home page and login.
@@ -29,7 +32,11 @@ public class MainController {
      * User zone index.
      */
     @RequestMapping("/user/index.html")
-    public String userIndex() {
+    public String userIndex(Principal principal, Model model) {
+        // get login user information
+        Authentication authentication = (Authentication) principal;
+        Users user = (Users) authentication.getPrincipal();
+        model.addAttribute("user", user);
         return "user/index.html";
     }
 
